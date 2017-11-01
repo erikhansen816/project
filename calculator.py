@@ -13,6 +13,9 @@ answerbar = RectangleAsset(275,50,blackoutline,white)
 keys = RectangleAsset(50,50,blackoutline,white)
 Sprite(calcoutline)
 Sprite(answerbar, (12.5,12.5))
-Sprite(keys, (12.5,75))
+for j in range(4):
+    for i in range(3):
+        Sprite(keys,(12.5 + 62.5*i, 75 + 62.5*j))
+
 
 App().run()
