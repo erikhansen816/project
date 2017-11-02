@@ -21,6 +21,10 @@ text9 = TextAsset(9,fill=black, style = 'bold 35pt Times')
 text10 = TextAsset('+/-',fill=black, style = 'bold 30pt Times')
 text11 = TextAsset(0,fill=black, style = 'bold 35pt Times')
 text12 = TextAsset('.',fill=black, style = 'bold 35pt Times')
+text13 = TextAsset('/',fill=black, style = 'bold 35pt Times')
+text14 = TextAsset('x',fill=black, style = 'bold 35pt Times')
+text15 = TextAsset('+',fill=black, style = 'bold 35pt Times')
+text16 = TextAsset('=',fill=black, style = 'bold 35pt Times')
 
 calcoutline = RectangleAsset(300,350,blackoutline,white)
 answerbar = RectangleAsset(275,50,blackoutline,white)
@@ -41,6 +45,10 @@ Sprite(text9,(28+72.5*2,85+68*2))
 Sprite(text10,(15,85+68*3))
 Sprite(text11,(28+72.5,85+68*3))
 Sprite(text12,(28+72.5*2,85+68*3))
+Sprite(text13,(28+72.5*3,85))
+Sprite(text14,(28+72.5*3,85+68))
+Sprite(text15,(28+72.5*3,85+68*2))
+Sprite(text16,(28+72.5*3,85+68*3))
 
 for j in range(4):
     for i in range(4):
