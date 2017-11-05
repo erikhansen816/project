@@ -57,13 +57,10 @@ for j in range(4):
             Sprite(equalkey, (230,284))
 
 def mouseClick(event):
-    timesclicked=0
     n=0
-    timesclicked+=1
-    if timesclicked == 2:
-        n+=1
     if event.x>28 and event.x<(28+55) and event.y>85 and event.y<(85+55):
         Sprite(text1, ((260-30*n), 13))
+        n+=1
     if event.x>28+72.5 and event.x<(28+72.5+55) and event.y>85 and event.y<(85+55):
         Sprite(text2, (260, 13))
     if event.x>28+72.5*2 and event.x<(28+72.5*2+55) and event.y>85 and event.y<(85+55):
