@@ -8,25 +8,29 @@ black = black = Color(0x000000,1)
 blackoutline = LineStyle(1,black)
 white = Color(0xFFFFFF,0)
 red = Color(0xFF0000,.5)
-n = 1
-text1 = TextAsset(1,fill=black, style = 'bold 35pt Times')
-text2 = TextAsset(2,fill=black, style = 'bold 35pt Times')
-text3 = TextAsset(3,fill=black, style = 'bold 35pt Times')
-text4 = TextAsset(4,fill=black, style = 'bold 35pt Times')
-text5 = TextAsset(5,fill=black, style = 'bold 35pt Times')
-text6 = TextAsset(6,fill=black, style = 'bold 35pt Times')
-text7 = TextAsset(7,fill=black, style = 'bold 35pt Times')
-text8 = TextAsset(8,fill=black, style = 'bold 35pt Times')
-text9 = TextAsset(9,fill=black, style = 'bold 35pt Times')
-text10 = TextAsset('+/-',fill=black, style = 'bold 30pt Times')
-text11 = TextAsset(0,fill=black, style = 'bold 35pt Times')
-text12 = TextAsset('.',fill=black, style = 'bold 35pt Times')
+
+text1 = TextAsset('C',fill=black, style = 'bold 35pt Times')
+text2 = TextAsset('',fill=black, style = 'bold 35pt Times')
+text3 = TextAsset('',fill=black, style = 'bold 35pt Times')
+text4 = TextAsset(1,fill=black, style = 'bold 35pt Times')
+text5 = TextAsset(2,fill=black, style = 'bold 35pt Times')
+text6 = TextAsset(3,fill=black, style = 'bold 35pt Times')
+text7 = TextAsset(4,fill=black, style = 'bold 35pt Times')
+text8 = TextAsset(5,fill=black, style = 'bold 35pt Times')
+text9 = TextAsset(6,fill=black, style = 'bold 35pt Times')
+text10 = TextAsset(7,fill=black, style = 'bold 35pt Times')
+text11 = TextAsset(8,fill=black, style = 'bold 35pt Times')
+text12 = TextAsset(9,fill=black, style = 'bold 35pt Times')
 text13 = TextAsset('/',fill=black, style = 'bold 35pt Times')
 text14 = TextAsset('x',fill=black, style = 'bold 35pt Times')
 text15 = TextAsset('+',fill=black, style = 'bold 35pt Times')
-text16 = TextAsset('=',fill=black, style = 'bold 35pt Times')
+text16 = TextAsset('-',fill=black, style = 'bold 35pt Times')
+text17 = TextAsset('+/-',fill=black, style = 'bold 30pt Times')
+text18 = TextAsset(0,fill=black, style = 'bold 35pt Times')
+text19 = TextAsset('.',fill=black, style = 'bold 35pt Times')
+text20 = TextAsset('=',fill=black, style = 'bold 35pt Times')
 
-calcoutline = RectangleAsset(300,350,blackoutline,white)
+calcoutline = RectangleAsset(300,420,blackoutline,white)
 answerbar = RectangleAsset(275,50,blackoutline,white)
 keys = RectangleAsset(55,55,blackoutline,white)
 equalkey = RectangleAsset(55,55,blackoutline,red)
@@ -42,29 +46,72 @@ Sprite(text6,(28+72.5*2,85+68))
 Sprite(text7,(28,85+68*2))
 Sprite(text8,(28+72.5,85+68*2))
 Sprite(text9,(28+72.5*2,85+68*2))
-Sprite(text10,(15,85+68*3))
+Sprite(text10,(28,85+68*3))
 Sprite(text11,(28+72.5,85+68*3))
 Sprite(text12,(28+72.5*2,85+68*3))
 Sprite(text13,(28+72.5*3,85))
 Sprite(text14,(28+72.5*3,85+68))
 Sprite(text15,(28+72.5*3,85+68*2))
 Sprite(text16,(28+72.5*3,85+68*3))
+Sprite(text17,(15,85+68*4))
+Sprite(text18,(28+72.5,85+68*4))
+Sprite(text19,(28+72.5*2,85+68*4))
+Sprite(text20,(28+72.5*3,85+68*4))
 
-for j in range(4):
+for j in range(5):
     for i in range(4):
         Sprite(keys,(12.5 + 72.5*i, 80 + 68*j))
-        if i == 3 and j == 3:
-            Sprite(equalkey, (230,284))
+        if i == 3 and j == 4:
+            Sprite(equalkey, (230,284+68))
+
+def processNumber(n):
+    data['buttonpressed1'] = data['buttonpressed1']+str(n)
+    data['num1'] = data['buttonpressed1']
+    Sprite(TextAsset(data['num1'],fill=black, style = 'bold 35pt Times'),(15,13))
+    return(data['num1'])
+
+def operation(n):
+    data['operation'] = n
+    return(data['operation']
+    
 
 def mouseClick(event):
-    n=0
-    if event.x>28 and event.x<(28+55) and event.y>85 and event.y<(85+55):
-        Sprite(text1, ((260-30*n), 13))
-        n+=1
-    if event.x>28+72.5 and event.x<(28+72.5+55) and event.y>85 and event.y<(85+55):
-        Sprite(text2, (260, 13))
-    if event.x>28+72.5*2 and event.x<(28+72.5*2+55) and event.y>85 and event.y<(85+55):
-        Sprite(text3, (260, 13))
+    if event.x>28 and event.x<(28+55) and event.y>85+68 and event.y<(85+68+55):
+        processNumber(1)
+    if event.x>28+72.5 and event.x<(28+72.5+55) and event.y>85+68 and event.y<(85+68+55):
+        processNumber(2)
+    if event.x>28+72.5*2 and event.x<(28+72.5*2+55) and event.y>85+68 and event.y<(85+68+55):
+        processNumber(3)
+    if event.x>28 and event.x<(28+55) and event.y>85+68*2 and event.y<(85+68*2+55):
+        processNumber(4)
+    if event.x>28+72.5 and event.x<(28+72.5+55) and event.y>85+68*2 and event.y<(85+68*2+55):
+        processNumber(5)
+    if event.x>28+72.5*2 and event.x<(28+72.5*2+55) and event.y>85+68*2 and event.y<(85+68*2+55):
+        processNumber(6)
+    if event.x>28 and event.x<(28+55) and event.y>85+68*3 and event.y<(85+68*3+55):
+        processNumber(7)
+    if event.x>28+72.5 and event.x<(28+72.5+55) and event.y>85+68*3 and event.y<(85+68*3+55):
+        processNumber(8)
+    if event.x>28+72.5*2 and event.x<(28+72.5*2+55) and event.y>85+68*3 and event.y<(85+68*3+55):
+        processNumber(9)
+    if event.x>28+72.5 and event.x<(28+72.5+55) and event.y>85+68*4 and event.y<(85+68*4+55):
+        processNumber(0)
+    
+        
+
+if __name__ == '__main__':
+    data = {}
+    data['num1'] = ''
+    data['buttonpressed1'] = ''
+    data['operation'] = ''
+    data['buttonpressed2'] = ''
+    data['num2'] = ''
+    
+
+
 App().listenMouseEvent('click',mouseClick)
+
+
+    
 
 App().run()
