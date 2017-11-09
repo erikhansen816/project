@@ -6,12 +6,12 @@ from ggame import *
 
 def plusminus():
     if data['operation'] == '':
-        data['num1'] = int(data['num1'])*-1
+        data['num1'] = float(data['num1'])*-1
         data['buttonpressed1'] = data['buttonpressed1']*-1
         data['display'].destroy()
         data['display'] = Sprite(TextAsset(data['num1'],fill=black, style = 'bold 35pt Times'),(15,13))
     if data['operation'] != '':
-        data['num2'] = int(data['num2'])*-1
+        data['num2'] = float(data['num2'])*-1
         data['buttonpressed2'] = data['buttonpressed2']*-1 
         data['display'].destroy()
         data['display'] = Sprite(TextAsset(data['num2'],fill=black, style = 'bold 35pt Times'),(15,13))
@@ -43,13 +43,13 @@ def math():
     if data['operation'] == '':
         ans = data['num1']
     if data['operation'] == 'x':
-        ans = int(data['num1']) * int(data['num2'])
+        ans = float(data['num1']) * float(data['num2'])
     if data['operation'] == '÷':
-        ans = int(data['num1']) / int(data['num2'])
+        ans = float(data['num1']) / float(data['num2'])
     if data['operation'] == '+':
-        ans = int(data['num1']) + int(data['num2'])
+        ans = float(data['num1']) + float(data['num2'])
     if data['operation'] == '-':
-        ans = int(data['num1']) - int(data['num2'])
+        ans = float(data['num1']) - float(data['num2'])
     data['num1'] = ans
     data['buttonpressed1'] = ''
     data['buttonpressed2'] = ''
@@ -101,7 +101,8 @@ def mouseClick(event):
         math()
     if event.x>28 and event.x<28+55 and event.y>85+68*4 and event.y<85+68*4+55:
         plusminus()
-        
+    if event.x>28+72.5*2 and event.x<(28+72.5*2+55) and event.y>85+68*4 and event.y<(85+68*4+55):
+        processNumber('.')
 
 if __name__ == '__main__':
     data = {}
