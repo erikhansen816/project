@@ -4,6 +4,7 @@
 
 from ggame import *
 
+#Negates the numbers that were just input
 def plusminus():
     if data['operation'] == '':
         data['num1'] = float(data['num1'])*-1
@@ -16,6 +17,7 @@ def plusminus():
         data['display'].destroy()
         data['display'] = Sprite(TextAsset(data['num2'],fill=black, style = 'bold 35pt Times'),(15,13))
 
+#This function processes the number that was just pressed and stores it. It also displays it on the screen
 def processNumber(n):
     if data['operation'] == '':
         data['buttonpressed1'] = data['buttonpressed1']+str(n)
@@ -30,6 +32,7 @@ def processNumber(n):
         data['display'] = Sprite(TextAsset(data['num2'],fill=black, style = 'bold 35pt Times'),(15,13))
         return(data['num2'])
 
+#This function clears everything in the calculator
 def clear():
     data['buttonpressed1'] = ''
     data['num1'] = ''
@@ -39,6 +42,7 @@ def clear():
     data['display'].destroy()
     data['display'] = Sprite(TextAsset('',fill=black, style = 'bold 35pt Times'),(15,13))
     
+#This function computes the answer given a specific operation. Occurs when you press equal button
 def math():
     if data['operation'] == '':
         ans = data['num1']
@@ -58,14 +62,13 @@ def math():
     data['display'].destroy()
     data['display'] = Sprite(TextAsset(data['num1'],fill=black, style = 'bold 35pt Times'),(15,13))
 
-
-
+#This function stores what mathematical operation that was chosen and is used for the math() function
 def operation(n):
     data['operation'] = n
     data['display'].destroy()
     data['display'] = Sprite(TextAsset(data['operation'],fill=black, style = 'bold 35pt Times'),(15,13))
     
-
+#This function defines what button is being pressed and what function occurs for each different button
 def mouseClick(event):
     if event.x>28 and event.x<(28+55) and event.y>85+68 and event.y<(85+68+55):
         processNumber(1)
@@ -105,6 +108,7 @@ def mouseClick(event):
         processNumber('.')
 
 if __name__ == '__main__':
+    #dictionary
     data = {}
     data['num1'] = ''
     data['buttonpressed1'] = ''
@@ -113,6 +117,7 @@ if __name__ == '__main__':
     data['num2'] = ''
     data['display'] = Sprite(TextAsset(''),(15,13))
     
+    #Colors of calculator
     black = black = Color(0x000000,1)
     blackoutline = LineStyle(1,black)
     white = Color(0xFFFFFF,0)
@@ -138,12 +143,14 @@ if __name__ == '__main__':
     text18 = TextAsset(0,fill=black, style = 'bold 35pt Times')
     text19 = TextAsset('.',fill=black, style = 'bold 35pt Times')
     text20 = TextAsset('=',fill=black, style = 'bold 35pt Times')
-
+    
+    
     calcoutline = RectangleAsset(300,420,blackoutline,white)
     answerbar = RectangleAsset(275,50,blackoutline,white)
     keys = RectangleAsset(55,55,blackoutline,white)
     equalkey = RectangleAsset(55,55,blackoutline,red)
-
+    
+    #Displays the calculator and all of the numbers on the calculator
     Sprite(calcoutline)
     Sprite(answerbar, (12.5,12.5))
     Sprite(text1,(28,85))
@@ -167,6 +174,7 @@ if __name__ == '__main__':
     Sprite(text19,(28+72.5*2,85+68*4))
     Sprite(text20,(28+72.5*3,85+68*4))
 
+    #Displays each box for the buttons
     for j in range(5):
         for i in range(4):
             Sprite(keys,(12.5 + 72.5*i, 80 + 68*j))
